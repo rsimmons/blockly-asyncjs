@@ -51,7 +51,7 @@ JavaScript['procedures_defreturn'] = function(block) {
   for (let i = 0; i < variables.length; i++) {
     args[i] = JavaScript.nameDB_.getName(variables[i], NameType.VARIABLE);
   }
-  let code = 'function ' + funcName + '(' + args.join(', ') + ') {\n' + xfix1 +
+  let code = 'async function ' + funcName + '(' + args.join(', ') + ') {\n' + xfix1 +
       loopTrap + branch + xfix2 + returnValue + '}';
   code = JavaScript.scrub_(block, code);
   // Add % so as not to collide with helper functions in definitions list.
@@ -73,8 +73,8 @@ JavaScript['procedures_callreturn'] = function(block) {
     args[i] = JavaScript.valueToCode(block, 'ARG' + i, JavaScript.ORDER_NONE) ||
         'null';
   }
-  const code = funcName + '(' + args.join(', ') + ')';
-  return [code, JavaScript.ORDER_FUNCTION_CALL];
+  const code = 'await ' + funcName + '(' + args.join(', ') + ')';
+  return [code, JavaScript.ORDER_AWAIT];
 };
 
 JavaScript['procedures_callnoreturn'] = function(block) {
