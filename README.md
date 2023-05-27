@@ -1,3 +1,18 @@
+### Fork notes
+
+This fork tweaks Blockly to support adding JS blocks that generate to `await` statements. To make this work with Blockly user-defined functions ("procedures"), all procedures are generated as async functions, and all calls to them are prefixed with `await`. The caller of `workspaceToCode` will still need to wrap the resulting code in an async function, unless it's in an environment that supports "top-level await".
+
+To build this fork and copy the resulting build to the boxbot project, do something like this:
+
+```bash
+git clone git@github.com:rsimmons/blockly-asyncjs.git
+cd blockly-asyncjs
+git checkout master
+npm install
+npm run build
+./copy_to_boxbot.sh
+```
+
 # Blockly
 
 Google's Blockly is a library that adds a visual code editor to web and mobile apps. The Blockly editor uses interlocking, graphical blocks to represent code concepts like variables, logical expressions, loops, and more. It allows users to apply programming principles without having to worry about syntax or the intimidation of a blinking cursor on the command line. All code is free and open source.
