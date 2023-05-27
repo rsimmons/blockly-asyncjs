@@ -9,7 +9,7 @@ git clone git@github.com:rsimmons/blockly-asyncjs.git
 cd blockly-asyncjs
 git checkout master
 npm install
-npm run build
+npm run package
 ./copy_to_boxbot.sh
 ```
 
